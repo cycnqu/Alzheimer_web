@@ -19,10 +19,12 @@ from django.urls import path
 from upload.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from predict.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',helloworld),
     path('upload/',upload),
     path('upload/success/',success),
-    path('listall/',list_all)
+    path('listall/',list_all),
+    path('predict/',prediction),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,10 +5,9 @@
         <body>
             <h2>all data</h2>
                 {% for image in images %}
-                {% load static %}
                 <div>
                     {{image.id}}<br>
-                    <img class="card-img-top" src="{{image.image.url }}" /><br>
+                    <img  src="{{image.image.url }}" /><br>
                     {{image.date}}
                 </div>
                {% endfor %} 

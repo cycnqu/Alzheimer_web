@@ -1,2 +1,4 @@
 env/*
 Alzheimer_web/media/*
+Alzheimer_web/static/models/*
+Alzheimer_web/static/images/*
