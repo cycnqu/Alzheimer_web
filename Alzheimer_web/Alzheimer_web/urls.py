@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',helloworld),
     path('upload/',upload),
-    path('upload/success/',success),
+    #path('upload/success/',success),
     path('listall/',list_all),
     path('predict/',prediction),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

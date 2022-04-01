@@ -18,14 +18,14 @@ def upload(request):
   
         if form.is_valid():
             form.save()
-            return redirect('/upload/success/')
+            return redirect('/predict/')
     else:
         form = Upload_Image_Form()
     return render(request, 'upload.html', {'form' : form})
   
   
-def success(request):
-    return HttpResponse('successfully uploaded')
+#def success(request):
+#    return HttpResponse('successfully uploaded')
 
 def list_all(request):
     images = Upload_Image.objects.all().order_by('id')

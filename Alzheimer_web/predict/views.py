@@ -13,8 +13,8 @@ def prediction(request):
     latest_image = Upload_Image.objects.last()
     test_image=latest_image.image.url 
     #print(test_image)
-    R_model_predict(test_image)
-    M_model_predict(test_image)
+    R_pred = R_model_predict(test_image)
+    M_pred = M_model_predict(test_image)
     return render(request,'predict.html',locals())
 
 # ResNet evaluate
@@ -70,7 +70,7 @@ def R_model_predict(test_image):
     Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('R_which possible:',answer,"{0:.0%}".format(preds.max()))
-    
+    return answer
 def M_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     M_model = load_model('static/models/smote_mobile.h5',custom_objects={'f1_score' :f1_score})
@@ -84,6 +84,7 @@ def M_model_predict(test_image):
     Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('M_which possible:',answer,"{0:.0%}".format(preds.max()))
+    return answer
 # MobileNet evaluate
 def M_model_evaluate():
     import tensorflow as tf
