@@ -27,7 +27,7 @@ urlpatterns = [
     # home page
     path('',home),
     # upload page
-    path('upload/',upload),
+    path('upload/',upload,name='Loadup'),
     #path('upload/success/',success),
     path('listall/',list_all),
     # predict page
