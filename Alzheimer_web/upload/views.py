@@ -1,16 +1,9 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from upload.forms import *
-# start django 
-def helloworld(request):
-    return HttpResponse('hello Alzheimer web')
-# upload_image
-
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
-  
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required(login_url='login')
 def upload(request):
   
     if request.method == 'POST':
@@ -26,7 +19,7 @@ def upload(request):
   
 #def success(request):
 #    return HttpResponse('successfully uploaded')
-
+@login_required(login_url='/login')
 def list_all(request):
     images = Upload_Image.objects.all().order_by('id')
     context = {

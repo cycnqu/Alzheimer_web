@@ -9,3 +9,9 @@
 * login & logout & sign up 
 * connecting with nginx
 * GCP server and domain name
+## pip install 
+* pillow
+* tensorflow
+* django-allauth
+# sign up
+* password need eng+num and total >8

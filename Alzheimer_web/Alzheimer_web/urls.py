@@ -15,16 +15,27 @@ Including another URLconf
 """
 from distutils.command.upload import upload
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from upload.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from predict.views import *
+from Alzheimer_web.views import home
+from login.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',helloworld),
+    # home page
+    path('',home),
+    # upload page
     path('upload/',upload),
     #path('upload/success/',success),
     path('listall/',list_all),
+    # predict page
     path('predict/',prediction),
+    # login page
+    path('accounts/', include('allauth.urls')),
+    path('register/',sign_up,name='Register'),
+    path('login/',sign_in,name='Login'),
+    #path('sign_in/',sign_in),
+    path('logout/', log_out, name='Logout'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

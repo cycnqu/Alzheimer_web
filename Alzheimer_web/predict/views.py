@@ -6,7 +6,9 @@ import keras.backend as K
 import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
+from django.contrib.auth.decorators import login_required
 # prediction page
+@login_required(login_url='/login')
 def prediction(request):
     #R_model_evaluate()
     #M_model_evaluate()
