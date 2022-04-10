@@ -2,6 +2,8 @@
         <head>
             <title>show all data</title>
         </head>
+        {% extends 'base.html' %}
+        {% block content %}
         <body>
             <h2>all data</h2>
                 {% for image in images %}
@@ -11,5 +13,6 @@
                     {{image.date}}
                 </div>
                {% endfor %} 
+               {% endblock  %}
         </body>
     </html>
