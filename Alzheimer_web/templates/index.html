@@ -38,10 +38,10 @@
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Loadup' %}">Upload</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Source</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                         {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Loadup' %}">Upload</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">退出登入</a></li>
                         {% endif %}
                     </ul>
@@ -70,10 +70,10 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <h2 class="text-white mt-0" >我們使用的技術</h2>
                         <!--<hr class="divider divider-light"/>-->
                         <hr style="width:800px;background-color: #fff;;height: 0.2rem;margin: 1.5rem auto;opacity: 1;" />
-                        <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+                        <p class="text-white-75 mb-4" style="font-size:24px;font-family:DFKai-sb;">我們使用了Resnet、DenseNet、MobileNet演算法技術來預測與分析罹患阿茲海默症的嚴重程度，又以四種程度來做區分，讓患者能提早就醫</p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>
@@ -82,36 +82,36 @@
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
+                <h2 class="text-center mt-0">我們提供</h2>
                 <!--<hr class="divider" />-->
                 <hr style="width:800px;background-color: #f4623a;height: 0.2rem;margin: 1.5rem auto;opacity: 1;" />
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <h3 class="h4 mb-2">醫療諮詢</h3>
+                            <!--<p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>-->
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            <h3 class="h4 mb-2">圖片分析</h3>
+                            <!--<p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>-->
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                            <h3 class="h4 mb-2">資料查詢</h3>
+                            <!--<p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>-->
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                            <h3 class="h4 mb-2">意見回饋</h3>
+                            <!--<p class="text-muted mb-0">Is it really open source if it's not made with love?</p>-->
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     <div class="col-lg-3 col-sm-8">
-                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/11.jpg'%}" title="Project Name">
+                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/11.jpg'%}" title="MildDemented">
                             <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/11.jpg'%}" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
@@ -131,7 +131,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-8">
-                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/12.jpg'%}" title="Project Name">
+                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/12.jpg'%}" title="ModerateDemented">
                             <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/12.jpg'%}" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
@@ -140,7 +140,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-8">
-                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/13.jpg'%}" title="Project Name">
+                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/13.jpg'%}" title="NonDemented">
                             <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/13.jpg'%}" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
@@ -149,7 +149,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-8">
-                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/14.jpg'%}" title="Project Name">
+                        <a class="portfolio-box" href="{% static 'img/portfolio/fullsize/14.jpg'%}" title="VeryMildDemented">
                             <img class="img-fluid" src="{% static 'img/portfolio/thumbnails/14.jpg'%}" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
