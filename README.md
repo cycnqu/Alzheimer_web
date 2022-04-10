@@ -15,3 +15,5 @@
 * django-allauth
 # sign up
 * password need eng+num and total >8
+# sign in
+* can superuser

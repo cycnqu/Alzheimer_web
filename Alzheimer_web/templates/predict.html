@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>predict_image</title>
 </head>
+{% extends 'base.html' %}
+{% block content %}
 <body>
     <div>
         <img  src="{{ test_image }}"/>
         <P>ResNet predict:{{R_pred}} </P>
         <p>MobileNet predict:{{M_pred}}</p>
+        <p>DenseNet predict:{{D_pred}}</p>
     </div>
 </body>
 </html>
+{% endblock %}

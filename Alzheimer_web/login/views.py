@@ -32,4 +32,4 @@ def sign_in(request):
 # 登出
 def log_out(request):
     logout(request)
-    return redirect('/login') #重新導向到登入畫面
+    return redirect('/') #重新導向到登入畫面

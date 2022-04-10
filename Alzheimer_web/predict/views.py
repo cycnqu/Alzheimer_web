@@ -17,7 +17,10 @@ def prediction(request):
     #print(test_image)
     R_pred = R_model_predict(test_image)
     M_pred = M_model_predict(test_image)
+    D_pred = D_model_predict(test_image)
     return render(request,'predict.html',locals())
+
+
 
 # ResNet evaluate
 def R_model_evaluate():
@@ -73,6 +76,7 @@ def R_model_predict(test_image):
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('R_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
+
 def M_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     M_model = load_model('static/models/smote_mobile.h5',custom_objects={'f1_score' :f1_score})
@@ -87,6 +91,24 @@ def M_model_predict(test_image):
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('M_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
+
+
+def D_model_predict(test_image):
+    #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
+    D_model = load_model('static/models/smote_dense.h5',custom_objects={'f1_score' :f1_score})
+    img_path ='.'+test_image
+    print(img_path)
+    img = image.load_img(img_path,target_size=(224,224))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x,axis=0)
+    preds = D_model.predict(x)
+    print('D_predicted:',preds)
+    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    answer = max(Alzheimer_class, key=Alzheimer_class.get)
+    print('D_which possible:',answer,"{0:.0%}".format(preds.max()))
+    return answer
+
+
 # MobileNet evaluate
 def M_model_evaluate():
     import tensorflow as tf
