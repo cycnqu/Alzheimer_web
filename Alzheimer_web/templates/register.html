@@ -1,30 +1,89 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+
 {% block content %}
-<h1>Alzheimer_Web</h1>
-<h3>註冊</h3>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-        <div class="form-group col-md-6">
-            <label>{{ form.username.label }}</label>
+<link href="{% static "css/login.css"%}" rel="stylesheet" type="text/css" />
+    <form autocomplete='off' class='form' method="POST">
+        {% csrf_token %}
+        <div class='control'>
+            <h1>
+                註冊
+            </h1>
+          </div>
+        <p>
+            username
+        </p>
+        <div class='control block-cube block-input'>
             {{ form.username }}
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
         </div>
-        <div class="form-group col-md-4">
-            <label>{{ form.email.label }}</label>
+        <p>
+            Email
+        </p>
+        <div class='control block-cube block-input'>
             {{ form.email }}
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
         </div>
-        <div class="form-group col-md-6">
-            <label>{{ form.password1.label }}</label>
+        <p>
+            password
+        </p>
+        <div class='control block-cube block-input'>
             {{ form.password1 }}
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
         </div>
-        <div class="form-group col-md-4">
-            <label>{{ form.password2.label }}</label>
+        <p>
+            password again
+        </p>
+        <div class='control block-cube block-input'>
             {{ form.password2 }}
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
         </div>
-    <br />
-    <input class="btn btn-success" type="submit" value="save" />
-</form>
-
-
+        <button class='btn block-cube block-cube-hover' type='submit'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='text'>
+            <a>註冊</a>
+          </div>
+        </button>
+    </form>
 {% endblock  %}
