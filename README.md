@@ -2,6 +2,8 @@
 ## gitignore 
 ```env/*```
 ```media/*```
+```images/*```
+```models/*```
 ## goal 
 * upload page(preview and upload success)
 * predict page(predict success and show on html)
