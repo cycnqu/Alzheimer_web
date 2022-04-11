@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
-from kiwisolver import UnknownConstraint
 from upload.models import Upload_Image
 import keras.backend as K
 import tensorflow as tf
