@@ -84,6 +84,7 @@
               <div class='bg-inner'></div>
             </div>
             <div class='text'>
+              {% csrf_token %}
                 <a  href="{% provider_login_url 'github' %}">Github登入</a>
             </div>
         </button>
