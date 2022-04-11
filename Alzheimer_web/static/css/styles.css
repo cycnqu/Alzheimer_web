@@ -10,44 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- li a, .dropbtn123 {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
 
-li a:hover, .dropdown123:hover .dropbtn123 {
-  background-color: red;
-}
-
-li.dropdown123{
-  display: inline-block;
-}
-
-.dropdown-content123 {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content123 a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content123 a:hover {background-color: #f1f1f1;}
-
-.dropdown123:hover .dropdown-content123 {
-  display: block;
-}
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -780,7 +743,6 @@ progress {
   flex: 0 0 auto;
   width: 25%;
 }
-
 .col-4 {
   flex: 0 0 auto;
   width: 33.33333333%;
@@ -11354,10 +11316,10 @@ body {
 }
 
 hr.divider {
-  width:800px;
-  background-color: #f4623a;
   height: 0.2rem;
+  max-width: 3.25rem;
   margin: 1.5rem auto;
+  background-color: #f4623a;
   opacity: 1;
 }
 
@@ -11436,10 +11398,33 @@ header.masthead {
   background-attachment: scroll;
   background-size: cover;
 }
+header.masthead h1, header.masthead .h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.masthead {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead p {
+    font-size: 1.15rem;
+  }
+  header.masthead h1, header.masthead .h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.masthead h1, header.masthead .h1 {
+    font-size: 3.5rem;
+  }
+}
+
 header.masthead1 {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../img/bg-masthead1.jpg");
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../img/test.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11464,29 +11449,6 @@ header.masthead1 h1, header.masthead1 .h1 {
 }
 @media (min-width: 1200px) {
   header.masthead1 h1, header.masthead1 .h1 {
-    font-size: 3.5rem;
-  }
-}
-
-header.masthead1 h1, header.masthead1 .h1 {
-  font-size: 2.25rem;
-}
-@media (min-width: 992px) {
-  header.masthead {
-    height: 100vh;
-    min-height: 40rem;
-    padding-top: 4.5rem;
-    padding-bottom: 0;
-  }
-  header.masthead p {
-    font-size: 1.15rem;
-  }
-  header.masthead h1, header.masthead .h1 {
-    font-size: 3rem;
-  }
-}
-@media (min-width: 1200px) {
-  header.masthead h1, header.masthead .h1 {
     font-size: 3.5rem;
   }
 }

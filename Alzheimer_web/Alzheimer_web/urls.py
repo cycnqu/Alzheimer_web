@@ -25,7 +25,7 @@ from login.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     # home page
-    path('',home),
+    path('',home,name='Hmoe'),
     # upload page
     path('upload/',upload,name='Loadup'),
     #path('upload/success/',success),
