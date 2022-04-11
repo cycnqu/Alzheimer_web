@@ -11,7 +11,8 @@
     <form  method = "post" enctype="multipart/form-data">
         
         {% csrf_token %}
-        <img id="blah" src="#" alt="your image" />
+        <img id="blah" src="#" alt="your image" width="200" 
+        height="200"/>
         {{ form.as_p }}
         
         <br>

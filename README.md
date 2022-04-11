@@ -5,7 +5,7 @@
 ```images/*```
 ```models/*```
 ## goal 
-* upload page(preview and upload success)
+* upload page
 * predict page(predict success and show on html)
 * list_all page(can filter and search )
 * login & logout & sign up 
@@ -15,8 +15,9 @@
 * pillow
 * tensorflow
 * django-allauth
-# sign up
+# login & logout & sign up 
+## sign up
 * password need eng+num and total >8
-# sign in
+## sign in
 * can superuser
-* github login success (20220411)
+* github login success (token to 35.197.74.137)
