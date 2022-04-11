@@ -9,8 +9,11 @@
 <body>
     <div style="text-align:center:#FFAC55;width:300px;height:20px;margin:0 auto;">
     <form  method = "post" enctype="multipart/form-data">
+        
         {% csrf_token %}
+        <img id="blah" src="#" alt="your image" />
         {{ form.as_p }}
+        
         <br>
         <button type="submit">Upload and predict</button>
         <br><br>
@@ -19,4 +22,12 @@
     </div>
 </body>
 </html>
+<script>
+    id_image.onchange = evt => {
+  const [file] = id_image.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
+</script>
 {% endblock %}
