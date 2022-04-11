@@ -19,3 +19,4 @@
 * password need eng+num and total >8
 # sign in
 * can superuser
+* github login success (20220411)
