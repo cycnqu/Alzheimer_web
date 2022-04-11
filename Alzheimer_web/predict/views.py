@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
+from kiwisolver import UnknownConstraint
 from upload.models import Upload_Image
 import keras.backend as K
 import tensorflow as tf
@@ -18,10 +19,21 @@ def prediction(request):
     R_pred = R_model_predict(test_image)
     M_pred = M_model_predict(test_image)
     D_pred = D_model_predict(test_image)
+    result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
     return render(request,'predict.html',locals())
 
-
-
+# hard voting
+def hardvoting(R,M,D):
+    if R == M and R==D:
+        return R
+    if R != M and R!=D:
+        return 'unknow'
+    if R == M and R!=D:
+        return R
+    if R!=M and R==D:
+        return R
+    if R!=M and M==D:
+        return M
 # ResNet evaluate
 def R_model_evaluate():
 
@@ -72,7 +84,7 @@ def R_model_predict(test_image):
     x = np.expand_dims(x,axis=0)
     preds = R_model.predict(x)
     print('_predicted:',preds)
-    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('R_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
@@ -87,7 +99,7 @@ def M_model_predict(test_image):
     x = np.expand_dims(x,axis=0)
     preds = M_model.predict(x)
     print('M_predicted:',preds)
-    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('M_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
@@ -103,7 +115,7 @@ def D_model_predict(test_image):
     x = np.expand_dims(x,axis=0)
     preds = D_model.predict(x)
     print('D_predicted:',preds)
-    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('D_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer

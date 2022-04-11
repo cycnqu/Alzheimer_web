@@ -9,10 +9,11 @@
 {% block content %}
 <body>
     <div>
-        <img  style="text-align: center;" src="{{ test_image }}"/>
+        <img  style="display:block; margin:auto;" src="{{ test_image }}"/>
         <P style="font-family: 'Times New Roman', Times, serif; text-align: center;">ResNet predict:{{R_pred}} </P>
         <p style="font-family: 'Times New Roman', Times, serif;text-align: center;">MobileNet predict:{{M_pred}}</p>
         <p style="font-family: 'Times New Roman', Times, serif; text-align: center;">DenseNet predict:{{D_pred}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: center;">result:{{result_hardvoting}}</p>
     </div>
 </body>
 </html>
