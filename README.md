@@ -19,6 +19,7 @@
 ## sign up
 * password need eng+num and total >8
 * can email to user's gmail 4/11 AAA
+* add email template.html 4/11 AAA 
 ## sign in
 * can superuser
 * github login success (token to 35.197.74.137)
