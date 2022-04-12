@@ -26,3 +26,12 @@
 * google login success (token to 35.197.74.137)test 4/11 AAA
 ## index
 * can use contact form (api data-sb-form-api-token) 4/11 AAA =>https://startbootstrap.com/account/forms
+## 4/12 
+* predict progress bar
+* login logout register response
+* ssl nginx
+* upload listall predict  美編
+* ppt word 
+* web testing
+* predict tag 
+* image post
