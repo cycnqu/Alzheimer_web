@@ -4,6 +4,8 @@ from login.form import *
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+
+from django.contrib import messages
 # Create your views here.
 def sign_up(request):
     form = RegisterForm()
@@ -41,8 +43,12 @@ def sign_in(request):
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('/')  #重新導向到首頁
+            if user.is_active:
+                login(request, user)
+                return redirect('/')  #重新導向到首頁
+        else:
+            messages.error(request,'username or password not correct')
+            return redirect('/login')
     context = {
         'form': form
     }

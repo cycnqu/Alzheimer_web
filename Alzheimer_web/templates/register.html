@@ -12,9 +12,7 @@
                 註冊
             </h1>
           </div>
-        <p>
-            username
-        </p>
+        
         <div class='control block-cube block-input'>
             {{ form.username }}
           <div class='bg-top'>
@@ -27,9 +25,7 @@
             <div class='bg-inner'></div>
           </div>
         </div>
-        <p>
-            Email
-        </p>
+        
         <div class='control block-cube block-input'>
             {{ form.email }}
           <div class='bg-top'>
@@ -42,9 +38,7 @@
             <div class='bg-inner'></div>
           </div>
         </div>
-        <p>
-            password
-        </p>
+  
         <div class='control block-cube block-input'>
             {{ form.password1 }}
           <div class='bg-top'>
@@ -57,9 +51,7 @@
             <div class='bg-inner'></div>
           </div>
         </div>
-        <p>
-            password again
-        </p>
+        
         <div class='control block-cube block-input'>
             {{ form.password2 }}
           <div class='bg-top'>
@@ -86,5 +78,13 @@
             <a>註冊</a>
           </div>
         </button>
+        <br>
+        <div class="alert alert-success">
+          {% if form.errors %}
+          <div class="ui error message">
+            {{ form.errors}}
+          </div>
+          {% endif %}
+          <div>  
     </form>
 {% endblock  %}

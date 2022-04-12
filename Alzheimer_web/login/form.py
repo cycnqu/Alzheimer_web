@@ -1,3 +1,4 @@
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -7,19 +8,19 @@ from .models import Customer
 class RegisterForm(UserCreationForm):
     username = forms.CharField(
         label="帳號",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Username'})
     )
     email = forms.EmailField(
         label="電子郵件",
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
+        widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Email'})
     )
     password1 = forms.CharField(
         label="密碼",
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Password'})
     )
     password2 = forms.CharField(
         label="密碼確認",
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'PasswordAgain'})
     )
     class Meta:
         model = User
@@ -28,11 +29,11 @@ class RegisterForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField(
         label="帳號",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Username'})
     )
     password = forms.CharField(
         label="密碼",
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Password'})
     )
 
 class CustomerModelForm(forms.ModelForm):
