@@ -85,5 +85,13 @@
             <a>註冊</a>
           </div>
         </button>
+        <br>
+        <div class="alert alert-success">
+          {% if form.errors %}
+          <div class="ui error message">
+            {{ form.errors}}
+          </div>
+          {% endif %}
+          <div>  
     </form>
 {% endblock  %}

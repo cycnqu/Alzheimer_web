@@ -5,10 +5,7 @@ from django.utils.html import mark_safe
 class Upload_Image(models.Model):
     image = models.ImageField(upload_to='images/',blank =False , null =False)
     date = models.DateField(default=timezone.now)
-    
-    def __str__(self):
-        return self.name
-
+    tag = models.CharField(max_length=100,default='NonDmented',null = False)
     @property
     def img_preview(self):
         if self.image:

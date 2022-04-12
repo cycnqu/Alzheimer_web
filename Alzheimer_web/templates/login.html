@@ -90,5 +90,14 @@
         </button>
         <p>還沒有帳號嗎? <a href="{% url 'Register' %}">註冊</a></p>
     </form>
+    {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="/login" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+    {% endfor %}
 </div>
 {% endblock  %}

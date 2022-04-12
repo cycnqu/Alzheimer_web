@@ -1,3 +1,5 @@
+from gc import callbacks
+import multiprocessing
 from django.shortcuts import render
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
@@ -7,6 +9,8 @@ import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
 from django.contrib.auth.decorators import login_required
+import tqdm
+import tensorflow_addons as tfa
 # prediction page
 @login_required(login_url='/login')
 def prediction(request):
@@ -81,7 +85,8 @@ def R_model_predict(test_image):
     img = image.load_img(img_path,target_size=(224,224))
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
-    preds = R_model.predict(x)
+    tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = R_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
     print('_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
@@ -96,7 +101,8 @@ def M_model_predict(test_image):
     img = image.load_img(img_path,target_size=(224,224))
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
-    preds = M_model.predict(x)
+    tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = M_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
     print('M_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
@@ -112,7 +118,8 @@ def D_model_predict(test_image):
     img = image.load_img(img_path,target_size=(224,224))
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
-    preds = D_model.predict(x)
+    tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = D_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
     print('D_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)

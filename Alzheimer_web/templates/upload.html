@@ -16,7 +16,7 @@
         {{ form.as_p }}
         
         <br>
-        <button type="submit">Upload and predict</button>
+        <button onclick="submit_alert" type="submit">Upload and predict</button>
         <br><br>
         
     </form>
@@ -29,6 +29,10 @@
   if (file) {
     blah.src = URL.createObjectURL(file)
   }
+}
+
+function submit_alert() {
+  alert("Please Wait!");
 }
 </script>
 {% endblock %}
