@@ -1,13 +1,32 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from login.form import *
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 # Create your views here.
 def sign_up(request):
     form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        username = request.POST.get('email',None)
         if form.is_valid():
             form.save()
+            print(username)
+            # 電子郵件內容樣板
+            email_template = render_to_string(
+                '../templates/signup_success_email.html',
+                {'username': request.user.username}
+            )
+            email = EmailMessage(
+                '註冊成功通知信',  # 電子郵件標題
+                email_template,  # 電子郵件內容
+                settings.EMAIL_HOST_USER,  # 寄件者
+                [''+username]  # 收件者
+            )
+            email.fail_silently = False
+            email.send()
+
             return redirect('/login')  #重新導向到登入畫面
     context = {
         'form': form
@@ -32,4 +51,4 @@ def sign_in(request):
 # 登出
 def log_out(request):
     logout(request)
-    return redirect('/') #重新導向到登入畫面
+    return redirect('/login') #重新導向到登入畫面
