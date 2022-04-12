@@ -19,3 +19,4 @@
 ## 4/12
 * 改註冊與登入頁面抱錯:主要更改位置view.py(sign_in)register.html&login.html 參考資料:https://www.796t.com/post/YWRhOXM=.html
 * 新增icon(google&github)
+* form 增加'placeholder'屬性
