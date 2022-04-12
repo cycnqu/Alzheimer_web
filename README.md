@@ -15,3 +15,7 @@
 * django-allauth
 # sign up
 * password need eng+num and total >8
+
+## 4/12
+* 改註冊與登入頁面抱錯:主要更改位置view.py(sign_in)register.html&login.html
+* 新增icon(google&github)
