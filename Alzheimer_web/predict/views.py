@@ -119,6 +119,7 @@ def D_model_predict(test_image):
     x = np.expand_dims(x,axis=0)
     #tqdm_callback = tfa.callbacks.TQDMProgressBar()
     preds = D_model.predict(x,use_multiprocessing=True)
+    print('D_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('D_which possible:',answer,"{0:.0%}".format(preds.max()))

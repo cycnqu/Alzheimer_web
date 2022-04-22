@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{{% extends 'base.html' %}
 {% load socialaccount %}
 {% load static %}
 
@@ -58,37 +58,14 @@
             My other codepens
           </a>
         </div>
-        <button class='btn block-cube block-cube-hover' type='submit'>
-            <div class='bg-top'>
-                <div class='bg-inner'></div>
-            </div>
-            <div class='bg-right'>
-              <div class='bg-inner'></div>
-            </div>
-            <div class='bg'>
-              <div class='bg-inner'></div>
-            </div>
-            <div class='text'>
-                <a  href="{% provider_login_url 'google' method='oauth2' %}">Google登入</a>
-            </div>
-        </button>
         </br>
-        <button class='btn block-cube block-cube-hover' type='submit'>
-            <div class='bg-top'>
-                <div class='bg-inner'></div>
-            </div>
-            <div class='bg-right'>
-              <div class='bg-inner'></div>
-            </div>
-            <div class='bg'>
-              <div class='bg-inner'></div>
-            </div>
-            <div class='text'>
-              {% csrf_token %}
-                <a  href="{% provider_login_url 'github' %}">Github登入</a>
-            </div>
-        </button>
-        <p>還沒有帳號嗎? <a href="{% url 'Register' %}">註冊</a></p>
+        <div>
+          <p>
+          <a  href="{% provider_login_url 'github' %}"><img src="{% static 'img/github.png'%}" alt="github login" ></a>
+          <a  href="{% provider_login_url 'google' method='oauth2' %}"><img src="{% static 'img/google.png'%}" alt="google login" ></a>
+          沒帳號嗎? <a href="{% url 'Register' %}">註冊</a>
+          </p>
+        </div>
     </form>
     {% for message in messages %}
 
