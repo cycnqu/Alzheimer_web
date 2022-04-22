@@ -85,7 +85,7 @@ def R_model_predict(test_image):
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
     #tqdm_callback = tfa.callbacks.TQDMProgressBar()
-    #preds = R_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
+    preds = R_model.predict(x,use_multiprocessing=True)
     print('_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
@@ -101,7 +101,7 @@ def M_model_predict(test_image):
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
     #tqdm_callback = tfa.callbacks.TQDMProgressBar()
-    #preds = M_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
+    preds = M_model.predict(x,use_multiprocessing=True)
     print('M_predicted:',preds)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
@@ -118,8 +118,7 @@ def D_model_predict(test_image):
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
     #tqdm_callback = tfa.callbacks.TQDMProgressBar()
-    #preds = D_model.predict(x,use_multiprocessing=True,callbacks=[tqdm_callback])
-    print('D_predicted:',preds)
+    preds = D_model.predict(x,use_multiprocessing=True)
     Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('D_which possible:',answer,"{0:.0%}".format(preds.max()))
