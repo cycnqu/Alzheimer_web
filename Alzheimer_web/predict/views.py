@@ -9,7 +9,7 @@ import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
 from django.contrib.auth.decorators import login_required
-import tensorflow_addons as tfa
+#import tensorflow_addons as tfa
 # prediction page
 @login_required(login_url='/login')
 def prediction(request):
@@ -31,11 +31,11 @@ def hardvoting(R,M,D):
     if R != M and R!=D:
         return 'unknow'
     if R == M and R!=D:
-        return R
-    if R!=M and R==D:
-        return R
-    if R!=M and M==D:
         return M
+    if R!=M and R==D:
+        return D
+    if R!=M and M==D:
+        return D
 # ResNet evaluate
 def R_model_evaluate():
 
