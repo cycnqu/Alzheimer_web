@@ -2,3 +2,5 @@ env/*
 Alzheimer_web/media/*
 Alzheimer_web/static/models/*
 Alzheimer_web/static/images/*
+compose/nginx/log/*
+Alzheimer_web/static/admin/*
