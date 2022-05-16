@@ -161,3 +161,14 @@ EMAIL_PORT = 587  #TLS通訊埠號
 EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 EMAIL_HOST_USER = 's110810546@student.nqu.edu.tw'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'xpwjfylsagtkuvlc'  #Gmail應用程式的密碼
+
+CACHES = {
+     "default": {
+         "BACKEND": "django_redis.cache.RedisCache",
+         "LOCATION": "redis://redis:6379/1", #这里直接使用redis别名作为host ip地址
+         "OPTIONS": {
+             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+             "PASSWORD": "nqu110sp", # 换成你自己密码
+         },
+     }
+ }

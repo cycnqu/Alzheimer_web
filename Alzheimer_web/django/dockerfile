@@ -1,0 +1,17 @@
+FROM python:3.10.4
+
+LABEL maintainer="s110810547@student.nqu.edu.tw"
+
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /web
+
+COPY . /web/
+
+RUN pip install --upgrade pip 
+
+RUN pip install -r requirements.txt
+
+WORKDIR /web/Alzheimer_web
+
+CMD python manage.py runserver 0.0.0.0:8080
