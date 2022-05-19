@@ -2,16 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth.decorators import login_required
+#from lazypage.decorators import lazypage_decorator
 # Create your views here.
+#@lazypage_decorator 
 @login_required(login_url='/login')
 def upload(request):
   
     if request.method == 'POST':
         form = Upload_Image_Form(request.POST, request.FILES)
   
-        if form.is_valid():
+        if form.is_valid() and 'gopred' in request.POST:
             form.save()
             return redirect('/predict/')
+        if form.is_valid() and 'gocheck' in request.POST:
+            form.save()
+            return redirect('/')
     else:
         form = Upload_Image_Form()
     return render(request, 'upload.html', {'form' : form})

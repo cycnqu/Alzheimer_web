@@ -15,13 +15,15 @@ Including another URLconf
 """
 from distutils.command.upload import upload
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
 from upload.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from predict.views import *
 from Alzheimer_web.views import home
 from login.views import *
+from testcelery.views import index as test
+import lazypage.urls  # <--- 引入 lazypage 路由
 urlpatterns = [
     path('admin/', admin.site.urls),
     # home page
@@ -38,4 +40,7 @@ urlpatterns = [
     path('login/',sign_in,name='Login'),
     #path('sign_in/',sign_in),
     path('logout/', log_out, name='Logout'),
+    path('testcelery/',test),
+    path('celery-progress/', include('celery_progress.urls')),
+    re_path(r'^lazypage/', lazypage.urls.get_urls()),  # <--- 添加 lazypage 的路由
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -15,6 +15,8 @@
 * pillow
 * tensorflow
 * django-allauth
+* celery
+* django-celery-results
 # login & logout & sign up 
 ## sign up
 * password need eng+num and total >8
@@ -39,4 +41,6 @@
 ## 4/13 do 
 * add upload tag
 * fixed login logout register response
-## 4/22
+## celery
+* redis 
+* celery -A Alzheimer_web worker -l info

@@ -1,5 +1,4 @@
-from gc import callbacks
-import multiprocessing
+from typing import Counter
 from django.shortcuts import render
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
@@ -9,33 +8,62 @@ import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
 from django.contrib.auth.decorators import login_required
+from celery import shared_task
+#from celery_progress.backend import ProgressRecorder
+from lazypage.decorators import lazypage_decorator
 #import tensorflow_addons as tfa
 # prediction page
+
 @login_required(login_url='/login')
+@lazypage_decorator 
 def prediction(request):
     #R_model_evaluate()
     #M_model_evaluate()
     latest_image = Upload_Image.objects.last()
     test_image=latest_image.image.url 
-    #print(test_image)
+    print(test_image)
     R_pred = R_model_predict(test_image)
     M_pred = M_model_predict(test_image)
     D_pred = D_model_predict(test_image)
     result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
+    '''
+    R_pred = R_model_predict.delay(test_image)
+    M_pred = M_model_predict.delay(test_image)
+    D_pred = D_model_predict.delay(test_image)
+    result_hardvoting = hardvoting.delay(R_pred,M_pred,D_pred)
+    '''
     return render(request,'predict.html',locals())
-
+'''
+@shared_task(bind = True)
+def predict_progress(self):
+    latest_image = Upload_Image.objects.last()
+    test_image=latest_image.image.url 
+    progress_recorder = ProgressRecorder(self)
+    counter =0
+    R_pred = R_model_predict.delay(test_image)
+    progress_recorder.set_progress(counter + 1, 4, f'On iteration {counter}')
+    M_pred = M_model_predict(test_image)
+    progress_recorder.set_progress(counter + 1, 4, f'On iteration {counter}')
+    D_pred = D_model_predict(test_image)
+    progress_recorder.set_progress(counter + 1, 4, f'On iteration {counter}')
+    result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
+    progress_recorder.set_progress(counter + 1, 4, f'On iteration {counter}')
+    return R_pred,M_pred,D_pred,result_hardvoting
+'''
 # hard voting
+#@shared_task
 def hardvoting(R,M,D):
-    if R == M and R==D:
+    if R == M and R==D and M==D: # all same output Resnet 
         return R
-    if R != M and R!=D:
+    if R != M and M!=D and R!=D: # because D accuracy is highest
         return 'unknow'
-    if R == M and R!=D:
+    if R == M and R!=D: # Resnet = Mobilnet output Mobilenet
         return M
-    if R!=M and R==D:
+    if R!=M and R==D:   # Densenet = Resnet output Densenet
         return D
-    if R!=M and M==D:
+    if R!=M and M==D:   # Mobilenet = DenseNet output Densenet
         return D
+'''
 # ResNet evaluate
 def R_model_evaluate():
 
@@ -67,6 +95,7 @@ def R_model_evaluate():
     print("Recall = ", scores[3])   # Recall =  0.8881939053535461  
     print("AUC = ", scores[4])  # AUC =  0.9774209856987
     print("F1_score = ", scores[5]) # F1_score =  0.892345666885376
+'''
 #def f1 score
 def f1_score(y_true, y_pred): #taken from old keras source code
         true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
@@ -76,6 +105,8 @@ def f1_score(y_true, y_pred): #taken from old keras source code
         recall = true_positives / (possible_positives + K.epsilon())
         f1_val = 2*(precision*recall)/(precision+recall+K.epsilon())
         return f1_val
+# Resnet model predict
+#@shared_task
 def R_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     R_model = load_model('static/models/Resnet_smote_20211228.hdf5',custom_objects={'f1_score' :f1_score})
@@ -92,6 +123,8 @@ def R_model_predict(test_image):
     print('R_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
 
+# mobiblenet model predict
+#@shared_task
 def M_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     M_model = load_model('static/models/smote_mobile.h5',custom_objects={'f1_score' :f1_score})
@@ -108,7 +141,8 @@ def M_model_predict(test_image):
     print('M_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
 
-
+# Densenet model predict
+#@shared_task
 def D_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     D_model = load_model('static/models/smote_dense.h5',custom_objects={'f1_score' :f1_score})
@@ -125,7 +159,7 @@ def D_model_predict(test_image):
     print('D_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
 
-
+'''
 # MobileNet evaluate
 def M_model_evaluate():
     import tensorflow as tf
@@ -158,8 +192,8 @@ def M_model_evaluate():
     print("Recall = ", scores[3])   # Recall =  0.8788115978240967  
     print("AUC = ", scores[4])  # AUC =  0.9749141335487366
     print("F1_score = ", scores[5]) # F1_score =  0.8811036944389343
-    
 
+'''
 
 
 
