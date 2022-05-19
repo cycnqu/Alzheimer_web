@@ -1,0 +1,9 @@
+django==4.0.3
+tensorflow==2.8.0
+pillow==9.1.0
+django-allauth==0.50.0
+uwsgi==2.0.20
+redis==4.3.1
+django-redis==5.2.0
+celery==5.2.6
+celery-progress==0.1.2

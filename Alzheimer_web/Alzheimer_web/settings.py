@@ -174,3 +174,13 @@ CELERY_ACCEPT_CONTENT = ['json','pickle',]
 CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_RESULT_SERIALIZER = 'pickle'
 CELERY_RESULT_BACKEND = 'django-db'
+CACHES = {
+     "default": {
+         "BACKEND": "django_redis.cache.RedisCache",
+         "LOCATION": "redis://redis:6379/1", #这里直接使用redis别名作为host ip地址
+         "OPTIONS": {
+             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+             "PASSWORD": "nqu110sp", # 换成你自己密码
+         },
+     }
+ }
