@@ -26,6 +26,8 @@ def prediction(request):
     M_pred = M_model_predict(test_image)
     D_pred = D_model_predict(test_image)
     result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
+    latest_image.predict_tag = result_hardvoting
+    latest_image.save()
     '''
     R_pred = R_model_predict.delay(test_image)
     M_pred = M_model_predict.delay(test_image)

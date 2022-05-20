@@ -6,6 +6,7 @@ class Upload_Image(models.Model):
     image = models.ImageField(upload_to='images/',blank =False , null =False)
     date = models.DateField(default=timezone.now)
     tag = models.CharField(max_length=100,default='NonDmented',null = False)
+    predict_tag = models.CharField(max_length=100,default='',null = True)
     @property
     def img_preview(self):
         if self.image:

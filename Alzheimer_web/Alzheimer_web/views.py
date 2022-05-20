@@ -7,5 +7,7 @@ def home(request):
     user = request.user
     user_agent = request.META.get('HTTP_USER_AGENT', 'unknown')
     ip = request.META['REMOTE_ADDR']
+    print(user)
+    print(user_agent)
     print(ip)
     return render(request, 'index.html')
