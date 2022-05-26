@@ -30,6 +30,8 @@ urlpatterns = [
     path('upload/',upload,name='Loadup'),
     #path('upload/success/',success),
     path('listall/',list_all),
+    path('photocomment/<int:photo>/', comment),
+    path('detail/<int:detailid>/', detail),
     # predict page
     path('predict/',prediction),
     # login page
@@ -38,4 +40,6 @@ urlpatterns = [
     path('login/',sign_in,name='Login'),
     #path('sign_in/',sign_in),
     path('logout/', log_out, name='Logout'),
+    path('delete/<int:id>/', user_delete, name='Delect'),
+    path('image_delete/<int:number>/', image_delete, name='Image_Delect'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

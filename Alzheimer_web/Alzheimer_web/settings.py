@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     # google provider
     'allauth.socialaccount.providers.google',
+    #filters
+    'django_filters',
 ]
 
 MIDDLEWARE = [

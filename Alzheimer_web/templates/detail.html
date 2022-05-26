@@ -1,0 +1,23 @@
+{% extends "baseadmin.html" %}
+{% load static %} 
+
+{% block content %}
+<div class="contentbox">
+    <table width="690px">
+      <tr>
+        <th align="left"><span class="typeblock">{{nickname}}
+      </tr>
+      <tr>
+        <td><span class="newsinfo">
+          <img src="" alt="" width="16" height="16" />&nbsp;{{pubtime}}
+          &nbsp;<img src="" alt="" width="16" height="16" />&nbsp;{{nickname}}</br> 
+          <span style="display: inline-block;width: 250px;word-break: break-all;">{{message}}</span>
+        </td>
+      </tr>
+    </table>
+    <div class="topfunction">
+        <a href="/photocomment/{{photoid}}" title="返回首頁">
+        <img src="" alt="返回首頁" width="86" height="32" /></a>
+    </div>
+</div>
+{% endblock %}

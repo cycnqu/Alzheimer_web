@@ -69,12 +69,10 @@
     </form>
     {% for message in messages %}
 
-                    <div class="alert alert-success">
-                        <a class="close" href="/login" data-dismiss="alert">×</a>
-
-                        {{ message }}
-
-                    </div>
+    <div class="alert alert-success">
+        <a class="close" href="/login" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
     {% endfor %}
 </div>
 {% endblock  %}

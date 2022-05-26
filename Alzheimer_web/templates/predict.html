@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>predict_image</title>
 </head>
+{% extends 'base.html' %}
+{% block content %}
 <body>
     <div>
-        <img  src="{{ test_image }}"/>
-        <P>ResNet predict:{{R_pred}} </P>
-        <p>MobileNet predict:{{M_pred}}</p>
+        <img  style="display:block; margin:auto;" src="{{ test_image }}"/>
+        <P style="font-family: 'Times New Roman', Times, serif; text-align: center;color:white;">ResNet predict:{{R_pred}} </P>
+        <p style="font-family: 'Times New Roman', Times, serif;text-align: center;color:white;">MobileNet predict:{{M_pred}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: center;color:white;">DenseNet predict:{{D_pred}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: center;color:white;">result:{{result_hardvoting}}</p>
     </div>
 </body>
 </html>
+{% endblock %}

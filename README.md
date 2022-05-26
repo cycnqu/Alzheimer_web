@@ -20,3 +20,28 @@
 * 改註冊與登入頁面抱錯:主要更改位置view.py(sign_in)register.html&login.html 參考資料:https://www.796t.com/post/YWRhOXM=.html
 * 新增icon(google&github)
 * form 增加'placeholder'屬性
+
+
+Alzheimer_web/
+    manage.py
+    Alzheimer_web/
+    login/
+    upload/
+    predict/
+    media/
+    static/
+        css/
+        js/
+        img/
+    templates/
+        base.html
+        index.html
+        listall.html
+        login.html
+        predict.html
+        register.html
+        signup_success_email.html
+        upload.html
+
+    
+

@@ -3,10 +3,11 @@
 {% load static%}
 <html>
     <head>
-      <link rel="icon" type="image/x-icon" href="{%static 'img/favicon.ico'%}" />
+      <!--icon-->
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" / >
       <!-- 導航CSS　JS-->
       <link href="{% static "css/styles.css"%}" rel="stylesheet" type="text/css" />
-      <!-- 導航login.css CSS　-->
+      <link href="{% static "css/comment.css" %}" rel="stylesheet" type="text/css" />
       <script src="{% static "js/scripts.js"%}"></script>
     </head>
     <!-- 導航入口 -->
@@ -23,10 +24,12 @@
               <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                      {% if user.is_authenticated %}
-                      <li class="nav-item"><a class="nav-link" href="{% url 'Loadup' %}">Upload</a></li>
+                    {% if user.is_authenticated %}
+                      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                      <li class="nav-item"><a class="nav-link" href="../listall">展示照片</a></li>
                       <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">退出登入</a></li>
-                      {% endif %}
+                      <li class="nav-item"><a class="nav-link" href="{% url "Delect" user.id %}" onclick="user_delete()">刪除使用者</a></li>
+                    {% endif %}
                   </ul>
               </div>
           </div>

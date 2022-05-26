@@ -1,0 +1,44 @@
+{% extends "baseadmin.html" %}
+{% load static %} 
+{% block content %}
+<center><img src="{{img.image.url }}" style="width: 400px;height: 300px;vertical-align : middle;"/></center>
+<table width="100%">
+    <tr>
+      <th align="left">留言者</th>
+      <th align="left">留言</th>
+      <th align="left">時間</th>
+      <th align="left">點閱</th>
+    </tr>
+    {% for unit in posts %}
+        <tr class="alt">
+        <td><a href="/detail/{{unit.id}}/">{{ unit.nickname }}</a></td>
+        <td><div style="max-width: 110px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ unit.message }}</div></td>
+        <td>{{ unit.pubtime }}</td>
+        <td>{{ unit.press }}</td>
+        </tr>
+    {% empty %}
+        <div class="status warning">
+            <p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
+        </div>
+    {% endfor %}
+</table>
+<div class="contentbox" >
+    <form action="." id="form1" name="form1" method="POST">
+      {% csrf_token %}
+      <table width="90%" align="center">
+        <tr>
+          <td valign="baseline"><strong>留言</strong></td>
+          <td valign="baseline"><textarea name="news_content" id="news_content" cols="60" rows="1" required  maxlength="55"></textarea></td>
+          <td valign="baseline"><input type="text" name="news_editor" id="news_editor" required value="{{user.username}}" style = "display:none"/></td>
+        </tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" name="button" id="button" value="送出" />
+          <input type="reset" name="button2" id="button2" value="重設" />
+          <input type="button" name="button3" id="button3" value="回主頁面" onclick="window.location='/listall/'" /></td>
+        </tr>
+      </table>
+      <span style="color:red">{{message}}</span>
+    </form>
+</div>
+{% endblock %}
+

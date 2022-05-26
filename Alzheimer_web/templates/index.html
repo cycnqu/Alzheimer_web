@@ -42,7 +42,9 @@
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'Loadup' %}">Upload</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../listall">展示照片</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">退出登入</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "Delect" user.id %}" >刪除使用者</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -238,7 +240,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-4 text-center mb-5 mb-lg-0">
                         <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
+                        <div>(08)231-3300</div>
                     </div>
                 </div>
             </div>

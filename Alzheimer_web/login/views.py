@@ -4,7 +4,9 @@ from login.form import *
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
-
+from django.contrib.auth.models import User #User模組
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 def sign_up(request):
@@ -58,3 +60,14 @@ def sign_in(request):
 def log_out(request):
     logout(request)
     return redirect('/login') #重新導向到登入畫面
+
+@login_required(login_url='/login')
+def user_delete(request, id):
+    user = User.objects.get(id=id)
+    print(user)
+    # 驗證登入使用者、待刪除使用者是否相同
+    if request.user == user:
+        #退出登入，刪除資料並返回部落格列表
+        logout(request)
+        user.delete()
+        return redirect('/login')

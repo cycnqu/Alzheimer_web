@@ -1,3 +1,5 @@
+from gc import callbacks
+import multiprocessing
 from django.shortcuts import render
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
@@ -7,6 +9,7 @@ import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
 from django.contrib.auth.decorators import login_required
+#import tensorflow_addons as tfa
 # prediction page
 @login_required(login_url='/login')
 def prediction(request):
@@ -17,8 +20,22 @@ def prediction(request):
     #print(test_image)
     R_pred = R_model_predict(test_image)
     M_pred = M_model_predict(test_image)
+    D_pred = D_model_predict(test_image)
+    result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
     return render(request,'predict.html',locals())
 
+# hard voting
+def hardvoting(R,M,D):
+    if R == M and R==D:
+        return R
+    if R != M and R!=D:
+        return 'unknow'
+    if R == M and R!=D:
+        return M
+    if R!=M and R==D:
+        return D
+    if R!=M and M==D:
+        return D
 # ResNet evaluate
 def R_model_evaluate():
 
@@ -67,12 +84,14 @@ def R_model_predict(test_image):
     img = image.load_img(img_path,target_size=(224,224))
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
-    preds = R_model.predict(x)
+    #tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = R_model.predict(x,use_multiprocessing=True)
     print('_predicted:',preds)
-    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('R_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
+
 def M_model_predict(test_image):
     #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
     M_model = load_model('static/models/smote_mobile.h5',custom_objects={'f1_score' :f1_score})
@@ -81,12 +100,32 @@ def M_model_predict(test_image):
     img = image.load_img(img_path,target_size=(224,224))
     x = image.img_to_array(img)
     x = np.expand_dims(x,axis=0)
-    preds = M_model.predict(x)
+    #tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = M_model.predict(x,use_multiprocessing=True)
     print('M_predicted:',preds)
-    Alzheimer_class ={'NonDemented':preds[0][0],'VeryMildDemented':preds[0][1],'MildDemented':preds[0][2],'ModerateDemented':preds[0][3]}
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
     answer = max(Alzheimer_class, key=Alzheimer_class.get)
     print('M_which possible:',answer,"{0:.0%}".format(preds.max()))
     return answer
+
+
+def D_model_predict(test_image):
+    #preds_class =['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
+    D_model = load_model('static/models/smote_dense.h5',custom_objects={'f1_score' :f1_score})
+    img_path ='.'+test_image
+    print(img_path)
+    img = image.load_img(img_path,target_size=(224,224))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x,axis=0)
+    #tqdm_callback = tfa.callbacks.TQDMProgressBar()
+    preds = D_model.predict(x,use_multiprocessing=True)
+    print('D_predicted:',preds)
+    Alzheimer_class ={'VeryMildDemented':preds[0][0],'ModerateDemented':preds[0][1],'MildDemented':preds[0][2],'NonDemented':preds[0][3]}
+    answer = max(Alzheimer_class, key=Alzheimer_class.get)
+    print('D_which possible:',answer,"{0:.0%}".format(preds.max()))
+    return answer
+
+
 # MobileNet evaluate
 def M_model_evaluate():
     import tensorflow as tf
@@ -119,18 +158,3 @@ def M_model_evaluate():
     print("Recall = ", scores[3])   # Recall =  0.8788115978240967  
     print("AUC = ", scores[4])  # AUC =  0.9749141335487366
     print("F1_score = ", scores[5]) # F1_score =  0.8811036944389343
-    
-
-
-
-
-    
-    
-      
-    
-
-
-
-
-
-
