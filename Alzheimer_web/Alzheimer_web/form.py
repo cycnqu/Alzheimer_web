@@ -15,10 +15,10 @@ class ContactForms(forms.Form):
         widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Email'})
     )
     phone = forms.CharField(
-        label="帳號",
+        label="電話",
         widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Username'})
     )
     message = forms.CharField(
-        label="帳號",
+        label="訊息",
         widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Username'})
     )
