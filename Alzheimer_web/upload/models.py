@@ -12,3 +12,10 @@ class Upload_Image(models.Model):
         if self.image:
             return mark_safe('<img src="{}" width="200" height="200" />'.format(self.image.url))
         return ""
+
+class NewsUnit(models.Model):
+    photoid = models.CharField(max_length=10, null=False)
+    nickname = models.CharField(max_length=20, null=False)
+    message = models.TextField(null=False)
+    pubtime = models.DateTimeField(auto_now=True)
+    press = models.IntegerField(default=0)

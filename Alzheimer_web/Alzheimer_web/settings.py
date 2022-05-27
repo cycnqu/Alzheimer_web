@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'testcelery',
     # lazypage
     'lazypage',
+    #filters
+    'django_filters',
     ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

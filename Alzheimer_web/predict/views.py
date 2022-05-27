@@ -27,6 +27,8 @@ def prediction(request):
     D_pred = D_model_predict(test_image)
     result_hardvoting = hardvoting(R_pred,M_pred,D_pred)
     latest_image.predict_tag = result_hardvoting
+    if latest_image.tag =='Unknow':
+        latest_image.tag = 'AI predict:' + result_hardvoting 
     latest_image.save()
     '''
     R_pred = R_model_predict.delay(test_image)

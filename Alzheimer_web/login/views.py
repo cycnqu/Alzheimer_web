@@ -56,3 +56,13 @@ def sign_in(request):
 def log_out(request):
     logout(request)
     return redirect('/login') #重新導向到登入畫面
+
+def user_delete(request, id):
+    user = User.objects.get(id=id)
+    print(user)
+    # 驗證登入使用者、待刪除使用者是否相同
+    if request.user == user:
+        #退出登入，刪除資料並返回部落格列表
+        logout(request)
+        user.delete()
+        return redirect('/login')

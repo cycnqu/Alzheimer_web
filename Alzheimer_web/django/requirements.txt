@@ -1,5 +1,0 @@
-django==4.0.3
-tensorflow==2.8.0
-pillow==9.1.0
-django-allauth==0.50.0
-uwsgi==2.0.20
