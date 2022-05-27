@@ -1,0 +1,22 @@
+{% extends "socialaccount/base.html" %}
+{% load i18n %}
+{% block content %}
+<figure>
+    {% if process == "connect" %}
+    <font size=6 >{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</font>
+
+    <p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+    {% else %}
+    <p style=" font-size: 5em;text-align:center;">{% blocktrans with provider.name as provider %}登入 {{ provider }}{% endblocktrans %}</p>
+
+    <p style=" font-size: 2em;text-align:center;">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+    {% endif %}
+    </br>
+    </br>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" id="foot"><a>BUTTON</a></button>
+    </form>
+</figure>
+{% endblock %}
+

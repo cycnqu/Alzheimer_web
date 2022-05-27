@@ -48,10 +48,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     # google provider
     'allauth.socialaccount.providers.google',
-    #celery
-    'django_celery_results',
-    'celery_progress',
-    'testcelery',
     # lazypage
     'lazypage',
     #filters
@@ -169,20 +165,3 @@ EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 EMAIL_HOST_USER = 's110810546@student.nqu.edu.tw'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'xpwjfylsagtkuvlc'  #Gmail應用程式的密碼
 
-# Celery settings
-
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = ['json','pickle',]
-CELERY_TASK_SERIALIZER = 'pickle'
-CELERY_RESULT_SERIALIZER = 'pickle'
-CELERY_RESULT_BACKEND = 'django-db'
-CACHES = {
-     "default": {
-         "BACKEND": "django_redis.cache.RedisCache",
-         "LOCATION": "redis://redis:6379/1", #这里直接使用redis别名作为host ip地址
-         "OPTIONS": {
-             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-             "PASSWORD": "nqu110sp", # 换成你自己密码
-         },
-     }
- }

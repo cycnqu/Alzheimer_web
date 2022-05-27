@@ -1,0 +1,33 @@
+FROM python:3.10.4
+
+LABEL maintainer="s110810547@student.nqu.edu.tw"
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+ENV APP_HOME=/var/www/html/myproject
+RUN mkdir -p $APP_HOME
+RUN chmod 777 $APP_HOME
+WORKDIR $APP_HOME
+
+ADD requirements.txt $APP_HOME
+
+RUN pip install --upgrade pip
+
+RUN pip install -r requirements.txt
+
+
+WORKDIR /usr/local/lib/python3.10/site-packages/lazypage/templates/lazypage
+RUN rm -f loading.html
+ADD loading.html /usr/local/lib/python3.10/site-packages/lazypage/templates/lazypage 
+
+WORKDIR /usr/local/lib/python3.10/site-packages/allauth/templates/account
+RUN rm -f base.html
+ADD base.html /usr/local/lib/python3.10/site-packages/allauth/templates/account
+
+WORKDIR /usr/local/lib/python3.10/site-packages/allauth/templates/socialaccount
+RUN rm -f login.html
+ADD login.html /usr/local/lib/python3.10/site-packages/allauth/templates/socialaccount
+
+WORKDIR $APP_HOME
+ENTRYPOINT /bin/bash ./start.sh

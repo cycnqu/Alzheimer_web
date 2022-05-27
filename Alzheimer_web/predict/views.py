@@ -8,8 +8,6 @@ import tensorflow as tf
 from keras.preprocessing import image
 import numpy as np
 from django.contrib.auth.decorators import login_required
-from celery import shared_task
-#from celery_progress.backend import ProgressRecorder
 from lazypage.decorators import lazypage_decorator
 #import tensorflow_addons as tfa
 # prediction page

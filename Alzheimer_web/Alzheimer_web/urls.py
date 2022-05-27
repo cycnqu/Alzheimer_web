@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 from predict.views import *
 from Alzheimer_web.views import home
 from login.views import *
-from testcelery.views import index as test
 import lazypage.urls  # <--- 引入 lazypage 路由
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,8 +41,6 @@ urlpatterns = [
     path('login/',sign_in,name='Login'),
     #path('sign_in/',sign_in),
     path('logout/', log_out, name='Logout'),
-    path('testcelery/',test),
-    path('celery-progress/', include('celery_progress.urls')),
     re_path(r'^lazypage/', lazypage.urls.get_urls()),  # <--- 添加 lazypage 的路由
     path('delete/<int:id>/', user_delete, name='Delect'),
     path('image_delete/<int:number>/', image_delete, name='Image_Delect')
