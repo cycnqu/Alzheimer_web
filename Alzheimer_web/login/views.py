@@ -25,8 +25,8 @@ def sign_up(request):
             email = EmailMessage(
                 '註冊成功通知信',  # 電子郵件標題
                 email_template,  # 電子郵件內容
-                settings.EMAIL_HOST_USER,  # 寄件者
-                [''+username]  # 收件者
+                ''+username,  # 寄件者
+                [settings.EMAIL_HOST_USER]  # 收件者
             )
             email.fail_silently = False
             email.send()
@@ -71,3 +71,5 @@ def user_delete(request, id):
         logout(request)
         user.delete()
         return redirect('/login')
+
+

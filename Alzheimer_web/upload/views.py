@@ -8,6 +8,7 @@ from upload import models
 from .filters import *
 from django.contrib.auth.models import User #User模組
 import math
+
 # Create your views here.
 number = None
 @login_required(login_url='/login')
@@ -38,12 +39,12 @@ def list_all(request):
 
 @login_required(login_url='/login')
 def image_delete(request, number=None):
-    image = Upload_Image.objects.get(id=number)
+    imagee = Upload_Image.objects.get(id=number)
     posts = models.NewsUnit.objects.filter(photoid=number).delete()
     #print(image.id)
     # 驗證登入使用者、待刪除使用者是否相同
     #退出登入，刪除資料並返回部落格列表
-    image.delete()
+    imagee.delete()
     return redirect('/listall')
 
 
