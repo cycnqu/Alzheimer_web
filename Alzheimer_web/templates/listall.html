@@ -92,6 +92,7 @@
                   <td>{{ image.id }}</td>
                   <td>{{ image.date }}</td>
                   <td>{{ image.tag }}</td>
+                  <td>{{ image.predict_tag }}</td>
                   <td><a class="portfolio-box" href="photocomment/{{image.id}}/"><img  class="img-fluid" src="{{image.image.url }}" /></a></td>
                   <td><button><a  href="{% url "Image_Delect" image.id %}" >刪除照片</a></button></td>  <!--刪照片-->
               </tr>
