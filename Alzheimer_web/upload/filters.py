@@ -6,4 +6,4 @@ class Upload_ImageFilter(django_filters.FilterSet):
  
     class Meta:
         model = Upload_Image
-        fields = ['id','date','tag']
+        fields = ['id','date','tag','predict_tag',]
